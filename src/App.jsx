@@ -3,6 +3,11 @@ import './App.css'
 import ToDo from './todo';
 import players from './players';
 import Players from './players';
+import Users from './users';
+import { Suspense } from 'react';
+
+const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json())
+
 function App() {
 
 
@@ -10,13 +15,22 @@ function App() {
     <>
 
       <h1>Vite + React</h1>
-        <Card></Card>
-        <Person></Person>
-        <ToDo task='learn react '> </ToDo>
 
-        <Counter></Counter>
 
- <Players></Players>
+      <Suspense fallback={<h3>Data loading....</h3>}>
+
+        <Users fetchUsers={fetchUsers}></Users>
+      </Suspense>
+       
+      <Card></Card>
+      <Person></Person>
+      <ToDo task='learn react '> </ToDo>
+
+      <Counter></Counter>
+
+      <Players></Players>
+
+
     </>
   )
 }
@@ -31,27 +45,27 @@ function Card(props) {
 
       <button onClick={handleClick}>order now</button>
 
-      <button onClick={function handleClick2(){
+      <button onClick={function handleClick2() {
         alert('second order Now')
       }}>second order now</button>
 
       <button onClick={handleClick3}> click 3</button>
 
-      <button onClick={() => alert('hy click 04 ') }> click 4 </button>
+      <button onClick={() => alert('hy click 04 ')}> click 4 </button>
 
-      <button onClick={ ()  => handleAdd5(10)}> click 5 add </button>
+      <button onClick={() => handleAdd5(10)}> click 5 add </button>
     </div>
   )
 }
 function Person() {
- const style ={
-  color:'rad',
-  fontSize:'30px',
-  backgroundColor:'grayLite',
-  borderRedius:'10px'
- };
+  const style = {
+    color: 'red',
+    fontSize: '30px',
+    backgroundColor: 'lightGray',
+    borderRadius: '10px'
+  };
   return (
-    <div  style={style}>
+    <div style={style}>
       <h2>card-dress-two</h2>
     </div>
   )
@@ -64,7 +78,7 @@ function Person() {
 // handle event react (onclick)
 //way one 
 
-function handleClick(){
+function handleClick() {
 
   alert('im a the click')
 
@@ -72,14 +86,14 @@ function handleClick(){
 
 // way three
 
-const handleClick3 = ( ) =>{
+const handleClick3 = () => {
   alert('i am the click number three ')
 }
 
 // way 5 
 
-const  handleAdd5 = (num) =>{
-  const  newNum = num + 7 ;
+const handleAdd5 = (num) => {
+  const newNum = num + 7;
   alert(newNum);
 }
 

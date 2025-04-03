@@ -49,3 +49,12 @@
   box-shadow: 10px 5px 5px gray;
   padding: 10px;
 }
+
+.user-card{
+  border: 1px solid red ;
+  border-radius: 10px;
+  background-color: darkkhaki;
+  margin: 20px;
+  padding:  20px;
+  align-items: center;
+}
